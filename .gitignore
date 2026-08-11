@@ -1,0 +1,7 @@
+.gemini/
+REPORTE E INFORMES-20260806T231359Z-1-001.zip
+*.zip
+*.log
+*.tmp
+*.ps1
+*.py

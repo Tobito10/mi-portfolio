@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tobias Galante — Entrenador &amp; Scout de Fútbol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1826;
+    --navy2:#122238;
+    --navy3:#1A3350;
+    --emerald:#1E7A5C;
+    --amber:#E7A730;
+    --crimson:#A5303A;
+    --paper:#EDEFF3;
+    --steel:#8C97AA;
+    --line: rgba(237,239,243,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--navy); color:var(--paper); font-family:'Sora', sans-serif; line-height:1.55; overflow-x:hidden; }
+  .mono{ font-family:'JetBrains Mono', monospace; letter-spacing:0.05em; }
+
+  nav{
+    display:flex; justify-content:space-between; align-items:center; padding:20px 6vw;
+    position:sticky; top:0; z-index:100; background:rgba(11,24,38,0.82); backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{ font-weight:800; font-size:17px; }
+  .brand span{ color:var(--amber); }
+  nav .links{ display:flex; gap:26px; }
+  nav a{ color:var(--paper); text-decoration:none; font-size:13px; font-weight:600; opacity:0.65; transition:opacity .2s; }
+  nav a:hover{ opacity:1; color:var(--amber); }
+
+  /* ---------- Hero / 3D floor ---------- */
+  .hero{ position:relative; min-height:94vh; display:flex; align-items:center; overflow:hidden; padding:60px 0; }
+  .floor-wrap{ position:absolute; inset:0; perspective:700px; perspective-origin:50% 15%; z-index:0; pointer-events:none; }
+  .floor{
+    position:absolute; left:50%; bottom:-30%; width:240%; height:150%; margin-left:-120%;
+    background-image:
+      linear-gradient(rgba(231,167,48,0.14) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(231,167,48,0.14) 1px, transparent 1px);
+    background-size:64px 64px; transform: rotateX(62deg); transform-origin: top;
+  }
+  .floor::before{ content:""; position:absolute; top:0; left:0; right:0; height:2px; background:var(--amber); opacity:0.55; }
+  .floor::after{
+    content:""; position:absolute; top:-110px; left:50%; width:260px; height:260px; margin-left:-130px;
+    border:2px solid var(--amber); border-radius:50%; opacity:0.28;
+  }
+  .hero-glow{
+    position:absolute; top:-20%; right:-10%; width:60vw; height:60vw; max-width:700px; max-height:700px;
+    background: radial-gradient(circle, rgba(30,122,92,0.35), transparent 70%); z-index:0; pointer-events:none;
+  }
+  .hero-inner{
+    position:relative; z-index:2; max-width:820px; margin:0 auto; padding:0 6vw; width:100%; text-align:center;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--amber); margin-bottom:18px; display:flex; align-items:center; justify-content:center; gap:10px;
+  }
+  .eyebrow::before, .eyebrow::after{ content:""; width:22px; height:2px; background:var(--amber); }
+  h1{ font-size:clamp(36px,6vw,64px); font-weight:800; line-height:1.06; letter-spacing:-0.01em; color:#fff; }
+  h1 em{ font-style:normal; color:var(--amber); }
+  .hero-sub{ margin:26px auto 0; font-size:16.5px; color:var(--steel); max-width:560px; }
+  .hero-actions{ margin-top:36px; display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
+  .btn{
+    font-family:'JetBrains Mono', monospace; font-size:12.5px; letter-spacing:0.05em; text-transform:uppercase;
+    padding:14px 24px; border-radius:8px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    font-weight:600; border:1.5px solid var(--paper); color:var(--paper); transition: all .2s; cursor:pointer;
+    background:transparent;
+  }
+  .btn.solid{ background:var(--amber); border-color:var(--amber); color:var(--navy); }
+  .btn.solid:hover{ background:#fff; border-color:#fff; }
+  .btn.emerald{ background:var(--emerald); border-color:var(--emerald); color:#fff; }
+  .btn.emerald:hover{ background:#25946e; border-color:#25946e; }
+  .btn:not(.solid):not(.emerald):hover{ background:var(--paper); color:var(--navy); }
+  .btn.active{ box-shadow:0 0 0 2px rgba(231,167,48,0.5); }
+
+  /* ---------- Reveal-on-scroll ---------- */
+  .reveal{ opacity:0; transform: translateY(46px) rotateX(10deg); transform-origin:bottom; transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform: translateY(0) rotateX(0deg); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .floor{ transform: rotateX(62deg) !important; }
+  }
+
+  section{ padding:80px 6vw; position:relative; z-index:1; }
+  .section-inner{ max-width:900px; margin:0 auto; perspective:1400px; }
+  .section-head{ margin-bottom:40px; text-align:center; }
+  .section-num{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--emerald); letter-spacing:0.12em; margin-bottom:8px; text-transform:uppercase; }
+  h2{ font-size:clamp(24px,3vw,34px); font-weight:800; color:#fff; }
+  .section-head p{ font-size:14px; color:var(--steel); margin-top:10px; }
+
+  /* ---------- Formación ---------- */
+  .course-card{
+    background:var(--navy2); border:1px solid var(--line); border-radius:16px; padding:28px 30px;
+    display:flex; align-items:center; gap:22px; box-shadow:0 10px 26px rgba(0,0,0,0.25);
+  }
+  .course-badge{
+    width:56px; height:56px; min-width:56px; border-radius:14px; background:var(--amber); color:var(--navy);
+    display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px;
+  }
+  .course-card h3{ font-size:18px; color:#fff; margin-bottom:4px; }
+  .course-card .meta{ font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--amber); }
+
+  /* ---------- Trayectoria ---------- */
+  .milestones{ display:grid; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+  .milestone{ background:var(--navy2); padding:22px 26px; }
+  .milestone .role{ font-weight:700; color:#fff; font-size:15.5px; margin-bottom:4px; }
+  .milestone .when{ font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--amber); margin-bottom:10px; }
+  .milestone p{ font-size:14px; color:var(--steel); }
+
+  /* ---------- Reportes panel ---------- */
+  .reports-panel{ display:none; }
+  .reports-panel.show{ display:block; }
+  .report-list{ display:grid; gap:14px; margin-top:8px; }
+  .report-item{
+    background:var(--navy2); border:1px solid var(--line); border-radius:14px; padding:20px 24px;
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    transform-style:preserve-3d; transition: transform .12s ease-out, box-shadow .2s ease;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  }
+  .report-item:hover{ transform: perspective(700px) rotateX(2deg) translateY(-3px); box-shadow:0 16px 30px rgba(0,0,0,0.32); }
+  .report-item h4{ font-size:16px; color:#fff; margin-bottom:4px; }
+  .report-item .tag{ font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--steel); text-transform:uppercase; }
+  .report-item a{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--amber); text-decoration:none; border-bottom:1.5px solid var(--amber); padding-bottom:2px; white-space:nowrap;
+  }
+  .report-item a:hover{ color:#fff; border-color:#fff; }
+  .reports-empty-note{
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--steel); margin-top:18px;
+    border-top:1px dashed var(--line); padding-top:16px;
+  }
+
+  /* ---------- Filtros ---------- */
+  .filters{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; justify-content:center; }
+  .chip{
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:0.04em; text-transform:uppercase;
+    padding:8px 16px; border-radius:30px; border:1px solid var(--line); background:var(--navy2);
+    color:var(--steel); cursor:pointer; transition: all .2s;
+  }
+  .chip:hover{ color:#fff; border-color:var(--amber); }
+  .chip.active{ background:var(--amber); border-color:var(--amber); color:var(--navy); font-weight:700; }
+  .report-list{ grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); display:grid; }
+  .report-item{ flex-direction:column; align-items:flex-start; gap:10px; }
+  .report-item a{ align-self:flex-start; }
+  .report-item.hidden{ display:none; }
+
+  footer{
+    padding:24px 6vw; background:var(--navy); color:var(--steel); border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; font-family:'JetBrains Mono', monospace; font-size:11px; flex-wrap:wrap; gap:8px;
+  }
+
+  @media (max-width: 600px){
+    .hero-actions{ flex-direction:column; width:100%; }
+    .btn{ justify-content:center; width:100%; }
+    .course-card{ flex-direction:column; text-align:center; }
+    .report-item{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">TOBIAS<span>·</span>GALANTE</div>
+  <div class="links">
+    <a href="#formacion">Formación</a>
+    <a href="#trayectoria">Trayectoria</a>
+    <a href="#reportes">Reportes</a>
+  </div>
+</nav>
+
+<header class="hero" id="hero">
+  <div class="floor-wrap"><div class="floor" id="floor"></div></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Entrenador &amp; Scout de Fútbol</div>
+    <h1>Toda mi vida <em>alrededor</em><br>de una pelota.</h1>
+    <p class="hero-sub">
+      Apasionado del fútbol desde siempre, me formé como Entrenador y Scout en la EDT (Escuela de Directores Técnicos).
+      Dirigí la preparación táctica del plantel juvenil de St. Xavier School (CABA) y llevé al equipo Sub-17 a ser
+      subcampeón en un torneo interescolar de 14 colegios, combinando video-observación, análisis de rendimiento y
+      detección de talento con criterio analítico y basado en datos.
+    </p>
+    <div class="hero-actions">
+      <a href="https://linkedin.com/in/tobias-galante" target="_blank" rel="noopener" class="btn">
+        LinkedIn
+      </a>
+      <button class="btn solid" id="btnEN" onclick="showReports('en')">Reports in English</button>
+      <button class="btn emerald" id="btnES" onclick="showReports('es')">Reportes en Español</button>
+    </div>
+  </div>
+</header>
+
+<section id="formacion">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="section-num">Formación</div>
+      <h2>Curso de Scouting</h2>
+    </div>
+    <div class="course-card reveal">
+      <div class="course-badge">EDT</div>
+      <div>
+        <h3>Diploma de Curso de Scouting</h3>
+        <div class="meta">EDT — Escuela de Directores Técnicos, CABA · 03/2021 – 03/2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trayectoria">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="section-num">Trayectoria</div>
+      <h2>Experiencia en el fútbol</h2>
+    </div>
+    <div class="milestones reveal">
+      <div class="milestone">
+        <div class="role">Head Coach / Scout — St. Xavier School, CABA</div>
+        <div class="when">05/2023 – 11/2024</div>
+        <p>Scouting interno del plantel para detectar perfiles con proyección a categorías superiores, e informes individuales de rendimiento a partir de análisis post-partido.</p>
+      </div>
+      <div class="milestone">
+        <div class="role">Preparación táctica semanal</div>
+        <div class="when">05/2023 – 11/2024</div>
+        <p>Diseño y ejecución de microciclos enfocados en la transición defensa-ataque y la toma de decisiones en espacios reducidos, adaptando esquemas según el rival.</p>
+      </div>
+      <div class="milestone">
+        <div class="role">Logro destacado</div>
+        <div class="when">2024</div>
+        <p>Subcampeón con el equipo Sub-17 en un torneo interescolar con 14 colegios participantes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reportes">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="section-num">Reportes</div>
+      <h2>Informes de Scouting</h2>
+      <p>Tocá uno de los botones del inicio ("Reports in English" / "Reportes en Español") para ver los informes en ese idioma.</p>
+    </div>
+
+    <div class="reveal">
+      <div id="panel-en" class="reports-panel">
+        <div class="filters" data-panel="en">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="forward">Forwards</button>
+          <button class="chip" data-filter="mid">Midfielders</button>
+          <button class="chip" data-filter="team">Team analysis</button>
+        </div>
+        <div class="report-list">
+          <div class="report-item" data-cat="forward"><div><h4>Winger — U17 Report</h4><div class="tag">Right Winger · 16 y/o</div></div><a href="https://docs.google.com/document/d/REPLACE_ID_1/view" target="_blank">Open report →</a></div>
+          <div class="report-item" data-cat="forward"><div><h4>Striker — U16 Report</h4><div class="tag">Centre Forward · 15 y/o</div></div><a href="https://docs.google.com/document/d/REPLACE_ID_2/view" target="_blank">Open report →</a></div>
+          <div class="report-item" data-cat="forward"><div><h4>Winger — U15 Report</h4><div class="tag">Left Winger · 14 y/o</div></div><a href="https://docs.google.com/document/d/REPLACE_ID_3/view" target="_blank">Open report →</a></div>
+          <div class="report-item" data-cat="mid"><div><h4>Central Midfielder — U15 Report</h4><div class="tag">Central Midfielder · 14 y/o</div></div><a href="https://docs.google.com/document/d/REPLACE_ID_4/view" target="_blank">Open report →</a></div>
+          <div class="report-item" data-cat="mid"><div><h4>Playmaker — U17 Report</h4><div class="tag">Attacking Mid · 16 y/o</div></div><a href="https://docs.google.com/document/d/REPLACE_ID_5/view" target="_blank">Open report →</a></div>
+          <div class="report-item" data-cat="mid"><div><h4>Defensive Mid — U16 Report</h4><div class="tag">Holding Mid · 15 y/o</div></div><a href="https://docs.google.com/document/d/REPLACE_ID_6/view" target="_blank">Open report →</a></div>
+          <div class="report-item" data-cat="team"><div><h4>Opponent Analysis — Match 1</h4><div class="tag">Team report · Pressing patterns</div></div><a href="https://docs.google.com/presentation/d/REPLACE_ID_7/view" target="_blank">Open report →</a></div>
+          <div class="report-item" data-cat="team"><div><h4>Opponent Analysis — Match 2</h4><div class="tag">Team report · Transitions</div></div><a href="https://docs.google.com/presentation/d/REPLACE_ID_8/view" target="_blank">Open report →</a></div>
+          <div class="report-item" data-cat="team"><div><h4>Season Summary — U17 Squad</h4><div class="tag">Team report · Overview</div></div><a href="https://docs.google.com/presentation/d/REPLACE_ID_9/view" target="_blank">Open report →</a></div>
+        </div>
+        <div class="reports-empty-note">// Reemplazar cada href con el link de "Compartir → Cualquiera con el enlace" de tu Google Doc/Slide real</div>
+      </div>
+
+      <div id="panel-es" class="reports-panel">
+        <div class="filters" data-panel="es">
+          <button class="chip active" data-filter="all">Todos</button>
+          <button class="chip" data-filter="forward">Delanteros</button>
+          <button class="chip" data-filter="mid">Mediocampistas</button>
+          <button class="chip" data-filter="team">Análisis de equipo</button>
+        </div>
+        <div class="report-list">
+          <div class="report-item" data-cat="forward"><div><h4>Extremo — Informe Sub-17</h4><div class="tag">Extremo Derecho · 16 años</div></div><a href="https://docs.google.com/document/d/REPLACE_ID_1/view" target="_blank">Abrir informe →</a></div>
+          <div class="report-item" data-cat="forward"><div><h4>Delantero Centro — Informe Sub-16</h4><div class="tag">Centro Delantero · 15 años</div></div><a href="https://docs.google.com/document/d/REPLACE_ID_2/view" target="_blank">Abrir informe →</a></div>
+          <div class="report-item" data-cat="forward"><div><h4>Extremo — Informe Sub-15</h4><div class="tag">Extremo Izquierdo · 14 años</div></div><a href="https://docs.google.com/document/d/REPLACE_ID_3/view" target="_blank">Abrir informe →</a></div>
+          <div class="report-item" data-cat="mid"><div><h4>Mediocampista — Informe Sub-15</h4><div class="tag">Volante Central · 14 años</div></div><a href="https://docs.google.com/document/d/REPLACE_ID_4/view" target="_blank">Abrir informe →</a></div>
+          <div class="report-item" data-cat="mid"><div><h4>Enganche — Informe Sub-17</h4><div class="tag">Mediapunta · 16 años</div></div><a href="https://docs.google.com/document/d/REPLACE_ID_5/view" target="_blank">Abrir informe →</a></div>
+          <div class="report-item" data-cat="mid"><div><h4>Volante de Contención — Informe Sub-16</h4><div class="tag">Volante Defensivo · 15 años</div></div><a href="https://docs.google.com/document/d/REPLACE_ID_6/view" target="_blank">Abrir informe →</a></div>
+          <div class="report-item" data-cat="team"><div><h4>Análisis Rival — Partido 1</h4><div class="tag">Informe de equipo · Patrones de presión</div></div><a href="https://docs.google.com/presentation/d/REPLACE_ID_7/view" target="_blank">Abrir informe →</a></div>
+          <div class="report-item" data-cat="team"><div><h4>Análisis Rival — Partido 2</h4><div class="tag">Informe de equipo · Transiciones</div></div><a href="https://docs.google.com/presentation/d/REPLACE_ID_8/view" target="_blank">Abrir informe →</a></div>
+          <div class="report-item" data-cat="team"><div><h4>Resumen de Temporada — Plantel Sub-17</h4><div class="tag">Informe de equipo · Panorama general</div></div><a href="https://docs.google.com/presentation/d/REPLACE_ID_9/view" target="_blank">Abrir informe →</a></div>
+        </div>
+        <div class="reports-empty-note">// Reemplazar cada href con el link de "Compartir → Cualquiera con el enlace" de tu Google Doc/Slide real</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Tobias Galante — Entrenador &amp; Scout de Fútbol</span>
+  <span>CABA, Argentina</span>
+</footer>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var floor = document.getElementById('floor');
+  if(floor && !reduced){
+    window.addEventListener('scroll', function(){
+      var y = window.scrollY * 0.18;
+      floor.style.transform = 'rotateX(62deg) translateY(' + y + 'px)';
+    }, {passive:true});
+  }
+
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, {threshold:0.2});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  window.showReports = function(lang){
+    document.getElementById('panel-en').classList.remove('show');
+    document.getElementById('panel-es').classList.remove('show');
+    document.getElementById('btnEN').classList.remove('active');
+    document.getElementById('btnES').classList.remove('active');
+    document.getElementById('panel-' + lang).classList.add('show');
+    document.getElementById('btn' + lang.toUpperCase()).classList.add('active');
+    document.getElementById('reportes').scrollIntoView({behavior:'smooth', block:'start'});
+  };
+
+  // Filtro por categoría dentro de cada panel de reportes
+  document.querySelectorAll('.filters').forEach(function(filterRow){
+    var panelId = 'panel-' + filterRow.getAttribute('data-panel');
+    var panel = document.getElementById(panelId);
+    var chips = filterRow.querySelectorAll('.chip');
+    var items = panel.querySelectorAll('.report-item');
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        chips.forEach(function(c){ c.classList.remove('active'); });
+        chip.classList.add('active');
+        var f = chip.getAttribute('data-filter');
+        items.forEach(function(item){
+          var show = (f === 'all' || item.getAttribute('data-cat') === f);
+          item.classList.toggle('hidden', !show);
+        });
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

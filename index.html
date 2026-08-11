@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tobias Galante — Entrenador &amp; Scout de Fútbol</title>
+  <meta name="description" content="Portfolio profesional de Tobias Galante, Entrenador y Scout de Fútbol. Información sobre formación, trayectoria y reportes de scouting detallados.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy: #0B1826;
+      --navy2: #122238;
+      --navy3: #1A3350;
+      --emerald: #1E7A5C;
+      --amber: #E7A730;
+      --crimson: #A5303A;
+      --paper: #EDEFF3;
+      --steel: #8C97AA;
+      --line: rgba(237, 239, 243, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--navy);
+      color: var(--paper);
+      font-family: 'Sora', sans-serif;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---------- Navigation ---------- */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 6vw;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 24, 38, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 17px;
+    }
+
+    .brand span {
+      color: var(--amber);
+    }
+
+    nav .links {
+      display: flex;
+      gap: 26px;
+    }
+
+    nav a {
+      color: var(--paper);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0.65;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    nav a:hover {
+      opacity: 1;
+      color: var(--amber);
+    }
+
+    /* ---------- Hero / 3D Floor ---------- */
+    .hero {
+      position: relative;
+      min-height: 94vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 60px 0;
+    }
+
+    .floor-wrap {
+      position: absolute;
+      inset: 0;
+      perspective: 700px;
+      perspective-origin: 50% 15%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .floor {
+      position: absolute;
+      left: 50%;
+      bottom: -30%;
+      width: 240%;
+      height: 150%;
+      margin-left: -120%;
+      background-image:
+        linear-gradient(rgba(231, 167, 48, 0.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(231, 167, 48, 0.14) 1px, transparent 1px);
+      background-size: 64px 64px;
+      transform: rotateX(62deg);
+      transform-origin: top;
+    }
+
+    .floor::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--amber);
+      opacity: 0.55;
+    }
+
+    .floor::after {
+      content: "";
+      position: absolute;
+      top: -110px;
+      left: 50%;
+      width: 260px;
+      height: 260px;
+      margin-left: -130px;
+      border: 2px solid var(--amber);
+      border-radius: 50%;
+      opacity: 0.28;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 60vw;
+      height: 60vw;
+      max-width: 700px;
+      max-height: 700px;
+      background: radial-gradient(circle, rgba(30, 122, 92, 0.35), transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 6vw;
+      width: 100%;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      width: 22px;
+      height: 2px;
+      background: var(--amber);
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--amber);
+    }
+
+    .hero-sub {
+      margin: 26px auto 0;
+      font-size: 16.5px;
+      color: var(--steel);
+      max-width: 560px;
+    }
+
+    .hero-actions {
+      margin-top: 36px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 14px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      border: 1.5px solid var(--paper);
+      color: var(--paper);
+      transition: all 0.2s;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .btn.solid {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: var(--navy);
+    }
+
+    .btn.solid:hover {
+      background: #fff;
+      border-color: #fff;
+    }
+
+    .btn.emerald {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: #fff;
+    }
+
+    .btn.emerald:hover {
+      background: #25946e;
+      border-color: #25946e;
+    }
+
+    .btn:not(.solid):not(.emerald):hover {
+      background: var(--paper);
+      color: var(--navy);
+    }
+
+    .btn.active {
+      box-shadow: 0 0 0 2px rgba(231, 167, 48, 0.5);
+    }
+
+    /* ---------- Reveal on Scroll ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(46px) rotateX(10deg);
+      transform-origin: bottom;
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .floor {
+        transform: rotateX(62deg) !important;
+      }
+    }
+
+    /* ---------- Sections General ---------- */
+    section {
+      padding: 80px 6vw;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      perspective: 1400px;
+    }
+
+    .section-head {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .section-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--emerald);
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .section-head p {
+      font-size: 14px;
+      color: var(--steel);
+      margin-top: 10px;
+    }
+
+    /* ---------- Formación ---------- */
+    .course-card {
+      background: var(--navy2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px 30px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+    }
+
+    .course-badge {
+      width: 56px;
+      height: 56px;
+      min-width: 56px;
+      border-radius: 14px;
+      background: var(--amber);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .course-card h3 {
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .course-card .meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: var(--amber);
+    }
+
+    /* ---------- Trayectoria ---------- */
+    .milestones {
+      display: grid;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .milestone {
+      background: var(--navy2);
+      padding: 22px 26px;
+    }
+
+    .milestone .role {
+      font-weight: 700;
+      color: #fff;
+      font-size: 15.5px;
+      margin-bottom: 4px;
+    }
+
+    .milestone .when {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--amber);
+      margin-bottom: 10px;
+    }
+
+    .milestone p {
+      font-size: 14px;
+      color: var(--steel);
+    }
+
+    /* ---------- Reportes & Filters ---------- */
+    .reports-panel {
+      display: none;
+    }
+
+    .reports-panel.show {
+      display: block;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      justify-content: center;
+    }
+
+    .chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: var(--navy2);
+      color: var(--steel);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chip:hover {
+      color: #fff;
+      border-color: var(--amber);
+    }
+
+    .chip.active {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .report-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .report-item {
+      background: var(--navy2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      transform-style: preserve-3d;
+      transition: transform 0.12s ease-out, box-shadow 0.2s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .report-item:hover {
+      transform: perspective(700px) rotateX(2deg) translateY(-3px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.32);
+    }
+
+    .report-item h4 {
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .report-item .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--steel);
+      text-transform: uppercase;
+    }
+
+    .report-item a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--amber);
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--amber);
+      padding-bottom: 2px;
+      white-space: nowrap;
+      align-self: flex-start;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .report-item a:hover {
+      color: #fff;
+      border-color: #fff;
+    }
+
+    .report-item.hidden {
+      display: none;
+    }
+
+    .reports-empty-note {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: var(--steel);
+      margin-top: 18px;
+      border-top: 1px dashed var(--line);
+      padding-top: 16px;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      padding: 24px 6vw;
+      background: var(--navy);
+      color: var(--steel);
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ---------- Responsive Design ---------- */
+    @media (max-width: 600px) {
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .course-card {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="brand">TOBIAS GALANTE</div>
+    <div class="links">
+      <a href="#trayectoria">Trayectoria</a>
+      <a href="#formacion">Formación</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero" id="hero">
+    <div class="floor-wrap">
+      <div class="floor" id="floor"></div>
+    </div>
+    <div class="hero-glow"></div>
+    
+    <div class="hero-inner">
+      <div class="eyebrow">Entrenador &amp; Scout de Fútbol</div>
+      <h1>Toda mi vida <em>alrededor</em><br>de una pelota.</h1>
+      <p class="hero-sub">
+        Apasionado del fútbol desde siempre, me formé como Entrenador y Scout en la EDT (Escuela de Directores Técnicos).
+        Dirigí la preparación táctica del plantel juvenil de St. Xavier School (CABA) y llevé al equipo Sub-17 a ser
+        subcampeón en un torneo interescolar de 14 colegios, combinando video-observación, análisis de rendimiento y
+        detección de talento con criterio analítico y basado en datos.
+      </p>
+      
+      <div class="hero-actions">
+        <a href="https://www.linkedin.com/in/tob%C3%ADas-galante-3015b6205/" target="_blank" rel="noopener" class="btn">
+          LinkedIn
+        </a>
+        <button class="btn solid" id="btnEN" onclick="showReports('en')">Reports in English</button>
+        <button class="btn emerald" id="btnES" onclick="showReports('es')">Reportes en Español</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Trayectoria Section -->
+    <section id="trayectoria">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div class="section-num">Trayectoria</div>
+          <h2>Experiencia en el fútbol</h2>
+        </div>
+        
+        <div class="milestones reveal">
+          <div class="milestone">
+            <div class="role">Head Coach / Scout — St. Xavier School, CABA</div>
+            <div class="when">05/2023 – 11/2024</div>
+            <p>Scouting interno del plantel para detectar perfiles con proyección a categorías superiores, e informes individuales de rendimiento a partir de análisis post-partido.</p>
+          </div>
+          
+          <div class="milestone">
+            <div class="role">Preparación táctica semanal</div>
+            <div class="when">05/2023 – 11/2024</div>
+            <p>Diseño y ejecución de microciclos enfocados en la transición defensa-ataque y la toma de decisiones en espacios reducidos, adaptando esquemas según el rival.</p>
+          </div>
+          
+          <div class="milestone">
+            <div class="role">Logro destacado</div>
+            <div class="when">2023</div>
+            <p>Subcampeón con el equipo Sub-17 en un torneo interescolar con 14 colegios participantes.</p>
+          </div>
+          
+          <div class="milestone">
+            <div class="role">Logro destacado — Segunda temporada</div>
+            <div class="when">2024</div>
+            <p>Tercer puesto en el mismo torneo interescolar, finalizando con la menor cantidad de goles recibidos de toda la competición.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formación Section -->
+    <section id="formacion">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div class="section-num">Formación</div>
+          <h2>Curso de Scouting</h2>
+        </div>
+        
+        <div class="course-card reveal">
+          <div class="course-badge">EDT</div>
+          <div>
+            <h3>Diploma de Curso de Scouting</h3>
+            <div class="meta">EDT — Escuela de Directores Técnicos, CABA · 03/2021 – 03/2023</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reportes Section -->
+    <section id="reportes">
+      <div class="section-inner">
+
+        <div class="reveal">
+          <!-- English Panel -->
+          <div id="panel-en" class="reports-panel">
+            <div class="filters" data-panel="en">
+              <button class="chip active" data-filter="all">All</button>
+              <button class="chip" data-filter="defender">Defenders</button>
+              <button class="chip" data-filter="mid">Midfielders</button>
+              <button class="chip" data-filter="forward">Forwards</button>
+            </div>
+            
+            <div class="report-list">
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Abbosbek Fayzullaev</h4>
+                  <div class="tag">Winger / Attacking Midfielder · 21 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Abbosbek_Fayzullaev_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Aleksey Batrakov</h4>
+                  <div class="tag">Attacking Midfielder · 20 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Aleksey_Batrakov_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Arthur Avom</h4>
+                  <div class="tag">Box-to-Box Midfielder · 20 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Arthur_Avom_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Bailey Rice</h4>
+                  <div class="tag">Defensive Midfielder · 18 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Bailey_Rice_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Brian Fariñas</h4>
+                  <div class="tag">Midfielder / Attacking Midfielder / Left Winger · 20 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Brian_Farinas_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Conrad Harder</h4>
+                  <div class="tag">Centre-Forward · 20 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Conrad_Harder_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="defender">
+                <div>
+                  <h4>Cuiabano</h4>
+                  <div class="tag">Left-Back · 22 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Cuiabano_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="defender">
+                <div>
+                  <h4>Diego León</h4>
+                  <div class="tag">Left-back / wing-back · 18 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Diego_Leon_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Francesco Pio Esposito</h4>
+                  <div class="tag">Centre-Forward · 20 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Francesco_Pio_Esposito_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Gilberto Mora</h4>
+                  <div class="tag">Attacking Midfielder · 16 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Gilberto_Mora_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Hakon Haraldsson</h4>
+                  <div class="tag">Attacking Midfielder / Midfielder / Left Winger · 23 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Hakon_Haraldsson_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Jesse Bisiwu</h4>
+                  <div class="tag">Left Winger · 17 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Jesse_Bisiwu_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>JJ Gabriel</h4>
+                  <div class="tag">Forward / Winger · 14 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_JJ_Gabriel_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>John Patrick</h4>
+                  <div class="tag">Central Midfielder · 22 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_John_Patrick_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Justin Lerma</h4>
+                  <div class="tag">Attacking Midfielder · 17 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Justin_Lerma_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Kryštof Daněk</h4>
+                  <div class="tag">Attacking Midfielder · 22 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Krystof_Danek_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Lennon Miller</h4>
+                  <div class="tag">Central Midfielder · 18 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Lennon_Miller_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Luighi</h4>
+                  <div class="tag">Centre-Forward / Left Winger · 18 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Luighi_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Maher Carrizo</h4>
+                  <div class="tag">Left Winger · 19 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Maher_Carrizo_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Mathias Fernández-Pardo</h4>
+                  <div class="tag">Attacker · 20 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Mathias_Fernandez_Pardo_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Miguel Agámez</h4>
+                  <div class="tag">Central Midfielder · 16 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Miguel_Agamez_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Moisés Paniagua</h4>
+                  <div class="tag">Forward · 17 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Moises_Paniagua_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Noah Sadiki</h4>
+                  <div class="tag">Defensive Midfielder · 20 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Noah_Sadiki_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Paulo Iago</h4>
+                  <div class="tag">Attacking Midfielder · 18 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Paulo_Iago_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Quim Junyet</h4>
+                  <div class="tag">Central Midfielder / Attacking Midfielder · 19 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Quim_Junyet_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Ryan McAidoo</h4>
+                  <div class="tag">Right Winger · 17 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Ryan_McAidoo_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Samuele Inacio</h4>
+                  <div class="tag">Attacker · 17 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Samuele_Inacio_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Shane Kluivert</h4>
+                  <div class="tag">Left Winger · 17 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Shane_Kluivert_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Thierno Barry</h4>
+                  <div class="tag">Centre-Forward · 22 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Thierno_Barry_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="defender">
+                <div>
+                  <h4>Tobías Ramírez (formerly known as Tobías Palacio)</h4>
+                  <div class="tag">Central Defender · 18 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Tobias_Ramirez_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="defender">
+                <div>
+                  <h4>Tyler Bindon</h4>
+                  <div class="tag">Central Defender · 20 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Tyler_Bindon_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Valentin Atangana Edoa</h4>
+                  <div class="tag">Defensive Midfielder · 19 y/o</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Report_Valentin_Atangana_Edoa_EN.pdf" target="_blank" rel="noopener">Open report →</a>
+              </div>
+            </div>
+            
+            <div class="reports-empty-note">// Reemplazar cada href con el link de "Compartir → Cualquiera con el enlace" de tu Google Doc/Slide real</div>
+          </div>
+
+          <!-- Spanish Panel -->
+          <div id="panel-es" class="reports-panel">
+            <div class="filters" data-panel="es">
+              <button class="chip active" data-filter="all">Todos</button>
+              <button class="chip" data-filter="defender">Defensores</button>
+              <button class="chip" data-filter="mid">Mediocampistas</button>
+              <button class="chip" data-filter="forward">Delanteros</button>
+            </div>
+            
+            <div class="report-list">
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Abbosbek Fayzullaev</h4>
+                  <div class="tag">Extremo / mediocampista ofensivo · 21 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Abbosbek_Fayzullaev_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Aleksey Batrakov</h4>
+                  <div class="tag">Mediocampista ofensivo · 20 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Aleksey_Batrakov_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Bailey Rice</h4>
+                  <div class="tag">Mediocampista defensivo · 18 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Bailey_Rice_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Brian Fariñas</h4>
+                  <div class="tag">Mediocentro / mediocentro ofensivo / extremo izquierdo · 20 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Brian_Farinas_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Conrad Harder</h4>
+                  <div class="tag">Delantero centro · 20 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Conrad_Harder_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="defender">
+                <div>
+                  <h4>Cuiabano</h4>
+                  <div class="tag">Lateral izquierdo · 22 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Cuiabano_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="defender">
+                <div>
+                  <h4>Diego León</h4>
+                  <div class="tag">Lateral izquierdo / carrilero · 18 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Diego_Leon_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Francesco Pio Esposito</h4>
+                  <div class="tag">Delantero centro · 20 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Francesco_Pio_Esposito_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Gilberto Mora</h4>
+                  <div class="tag">Mediocampista ofensivo · 16 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Gilberto_Mora_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Hakon Haraldsson</h4>
+                  <div class="tag">Mediocentro ofensivo / mediocentro / extremo izquierdo · 23 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Hakon_Haraldsson_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Jesse Bisiwu</h4>
+                  <div class="tag">Extremo izquierdo · 17 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Jesse_Bisiwu_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>JJ Gabriel</h4>
+                  <div class="tag">Atacante / extremo · 14 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_JJ_Gabriel_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>John Patrick</h4>
+                  <div class="tag">Mediocampista central · 22 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_John_Patrick_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Justin Lerma</h4>
+                  <div class="tag">Mediocampista ofensivo · 17 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Justin_Lerma_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Lennon Miller</h4>
+                  <div class="tag">Mediocampista central · 18 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Lennon_Miller_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Luighi</h4>
+                  <div class="tag">Delantero centro / Extremo izquierdo · 18 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Luighi_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Maher Carrizo</h4>
+                  <div class="tag">Extremo izquierdo · 19 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Maher_Carrizo_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Mathias Fernández-Pardo</h4>
+                  <div class="tag">Atacante · 20 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Mathias_Fernandez_Pardo_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Miguel Agámez</h4>
+                  <div class="tag">Mediocampista central · 16 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Miguel_Agamez_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Mihajlo Cvetković</h4>
+                  <div class="tag">Delantero centro ("9") · 18 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Mihajlo_Cvetkovic_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Moisés Paniagua</h4>
+                  <div class="tag">Delantero · 17 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Moises_Paniagua_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Noah Sadiki</h4>
+                  <div class="tag">Mediocampista defensivo · 20 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Noah_Sadiki_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Paulo Iago</h4>
+                  <div class="tag">Mediocampista ofensivo · 18 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Paulo_Iago_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Quim Junyet</h4>
+                  <div class="tag">Mediocentro / mediocentro ofensivo · 19 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Quim_Junyet_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Ryan McAidoo</h4>
+                  <div class="tag">Extremo derecho · 17 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Ryan_McAidoo_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Samuele Inacio</h4>
+                  <div class="tag">Atacante · 17 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Samuele_Inacio_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Shane Kluivert</h4>
+                  <div class="tag">Extremo izquierdo · 17 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Shane_Kluivert_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="forward">
+                <div>
+                  <h4>Thierno Barry</h4>
+                  <div class="tag">Delantero centro · 22 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Thierno_Barry_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="defender">
+                <div>
+                  <h4>Tobías Ramírez (anteriormente conocido como Tobías Palacio)</h4>
+                  <div class="tag">Defensor central · 18 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Tobias_Ramirez_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="defender">
+                <div>
+                  <h4>Tyler Bindon</h4>
+                  <div class="tag">Defensor central · 20 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Tyler_Bindon_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+              <div class="report-item" data-cat="mid">
+                <div>
+                  <h4>Valentin Atangana Edoa</h4>
+                  <div class="tag">Mediocampista defensivo · 19 años</div>
+                </div>
+                <a href="REPORTE%20E%20INFORMES%20PDF/Reporte_Valentin_Atangana_Edoa_ES.pdf" target="_blank" rel="noopener">Abrir informe →</a>
+              </div>
+            </div>
+            
+            <div class="reports-empty-note">// Reemplazar cada href con el link de "Compartir → Cualquiera con el enlace" de tu Google Doc/Slide real</div>
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <span>© 2026 Tobias Galante — Entrenador &amp; Scout de Fútbol</span>
+    <span>CABA, Argentina</span>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Parallax 3D Floor Effect
+      var floor = document.getElementById('floor');
+      if (floor && !reduced) {
+        window.addEventListener('scroll', function () {
+          var y = window.scrollY * 0.18;
+          floor.style.transform = 'rotateX(62deg) translateY(' + y + 'px)';
+        }, { passive: true });
+      }
+
+      // Reveal-on-Scroll Observer
+      var revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        revealEls.forEach(function (el) { io.observe(el); });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add('in'); });
+      }
+
+      // Reports Lang Panel Toggle
+      window.showReports = function (lang) {
+        document.getElementById('panel-en').classList.remove('show');
+        document.getElementById('panel-es').classList.remove('show');
+        document.getElementById('btnEN').classList.remove('active');
+        document.getElementById('btnES').classList.remove('active');
+        
+        document.getElementById('panel-' + lang).classList.add('show');
+        document.getElementById('btn' + lang.toUpperCase()).classList.add('active');
+        document.getElementById('reportes').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+
+      // Filter Chips behavior for each Reports Panel
+      document.querySelectorAll('.filters').forEach(function (filterRow) {
+        var panelId = 'panel-' + filterRow.getAttribute('data-panel');
+        var panel = document.getElementById(panelId);
+        var chips = filterRow.querySelectorAll('.chip');
+        var items = panel.querySelectorAll('.report-item');
+        
+        chips.forEach(function (chip) {
+          chip.addEventListener('click', function () {
+            chips.forEach(function (c) { c.classList.remove('active'); });
+            chip.classList.add('active');
+            
+            var filterVal = chip.getAttribute('data-filter');
+            items.forEach(function (item) {
+              var show = (filterVal === 'all' || item.getAttribute('data-cat') === filterVal);
+              item.classList.toggle('hidden', !show);
+            });
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
